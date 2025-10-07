@@ -79,7 +79,7 @@ def level_three(method:str) -> str: #функция для операций spli
         count_letter = str(input())
         return text.count(count_letter)
 print(level_three(method))
-
+    
 
 
 def level_four(method:str) -> str: #функция для операций strip, isdigit, isalpha
