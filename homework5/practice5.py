@@ -15,23 +15,23 @@ class SEOAnalyzerWindow(QWidget):
         layout.setSpacing(10)
 
 
-        text_edit = QTextEdit()
-        text_edit.setFixedHeight(120)
-        text_edit.setPlaceholderText("Введите текст для анализа...")
+        text = QTextEdit()
+        text.setFixedHeight(120)
+        text.setPlaceholderText("Введите текст для анализа...")
 
         scroll = QScrollBar(Qt.Orientation.Vertical)
         scroll.setFixedHeight(120)
 
         top_layout = QHBoxLayout()
-        top_layout.addWidget(text_edit)
+        top_layout.addWidget(text)
         top_layout.addWidget(scroll)
         layout.addLayout(top_layout)
 
-        # Кнопка
+
         button = QPushButton("Анализ")
         layout.addWidget(button)
 
-        # Результат
+
         self.result_label = QLabel("")
         layout.addWidget(self.result_label)
 
