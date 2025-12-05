@@ -26,3 +26,47 @@ column_list = database.columns.tolist()
 print(f'Колво заголовков - {len(column_list)}')
 row_list = len(database)
 print(f'Колво строк - {row_list}')
+
+#2.1
+print("===========================================")
+
+survival_by_sex = database.groupby('Sex')['Survived'].mean() * 100
+print("а)процент выживших")
+print(survival_by_sex)
+print("===========================================")
+
+
+average_age_by_sex = database.groupby('Sex')['Age'].mean()
+print("б)средний возраст")
+print(average_age_by_sex)
+print("===========================================")
+
+age_by_survival_sex = database.groupby(['Sex', 'Survived'])['Age'].mean()
+print("в)средний возраст выживших и погибших")
+print(age_by_survival_sex)
+print("====================================")
+
+#2.2
+
+
+filter_2_2_a = database[(database['Age'] > 30) & (database['Sex'] == 'male') & (database['Pclass'] == 1)]
+print("а)старше 30, мж, 1кл:")
+print(f"колво пассажиров: {len(filter_2_2_a)}")
+if len(filter_2_2_a) > 0:
+    print(filter_2_2_a[['Name', 'Age', 'Sex', 'Pclass', 'Survived']].head())
+print()
+
+
+filter_2_2_b = database[((database['Age'] < 18) |
+                     (database['Sex'] == 'female')) &
+                    (database['Survived'] == 1)]
+print("б) моложе 18 или женщины, выжили:")
+print(f"колво пассажиров: {len(filter_2_2_b)}")
+if len(filter_2_2_b) > 0:
+    print(filter_2_2_b[['Name', 'Age', 'Sex', 'Survived']].head())
+print()
+
+
+print("в) группировка по классу и полу")
+group_2_2_c = database.groupby(['Pclass', 'Sex']).agg({'Age': 'mean','Survived': 'mean','Fare': 'mean'}).round(2)
+print(group_2_2_c)
